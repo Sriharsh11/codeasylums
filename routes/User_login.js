@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const db = require('../models/mydb.js');
 const bcrypt = require('bcrypt');
+const path = require('path');
 
 router.get('/login',function(req,res){
-    res.json('login here');
+    // res.sendFile(path.join(__dirname,'../views','login.html'));
+    res.render('login.ejs')
 });
 
 router.post('/login',function(req,res){

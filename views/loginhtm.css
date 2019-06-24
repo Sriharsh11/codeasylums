@@ -1,0 +1,25 @@
+html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        /* display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+         margin-left:60%;
+        margin-right: 10%; */
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    .cardstyle{
+      width:80%;
+      margin-Top:20%;
+    }
+    .imgstyle{
+      width:40%;
+    }
+    .footerstyle{
+      text-align: center;
+    }

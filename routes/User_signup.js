@@ -1,15 +1,20 @@
 const router = require('express').Router();
 const db = require('../models/mydb.js');
 const bcrypt = require('bcrypt');
+var session = require('express-session');
 
 router.get('/signup',function(req,res){
-    res.json('signup here');
+    if(req.session && req.session.user){
+        res.redirect('/dashboard');
+    } else {
+        res.render('register.ejs');
+    }
 });
 
 router.post('/signup',function(req,res){
     console.log(req.body);
     
-    var user_id = req.body.user_id;
+    // var user_id = req.body.user_id;
     var username = req.body.username;
     var password = req.body.password;
     var firstName = req.body.firstName;
@@ -26,16 +31,18 @@ router.post('/signup',function(req,res){
                 else{
                     console.log(hash);
                     password = hash;
-                    var sql = "INSERT INTO users (user_id, firstName, lastName, username, password, phoneNo) VALUES (user_id, firstName, lastName, username, password, phoneNo)";
-                    db.query(sql,function(err,result){
-                        if(err) throw err;
+                    // var sql = 'INSERT INTO users (firstName, lastName, username, password, phoneNo) VALUES ('+ " + firstName + " + ','+ "+ lastName +"+ ','+ "+ username +"+ ',' + password + ',' + phoneNo + ')';
+                    var sql = 'INSERT INTO users (firstName,lastName,username,password,phoneNo) VALUES ()'
+                    db.query(sql,function(err,user){
+                        if(err) console.log(err);
                         else{
-                            console.log(result);
+                            console.log(user);
                             console.log("record saved");
-                            res.json('created');
-                            // res.redirect('/dashboard');
+                            req.session.user = user[0];
+                            res.redirect('/dashboard');
                         }
                     });
+                    db.end();
                 }
             })
         })
@@ -51,5 +58,6 @@ router.post('/signup',function(req,res){
     // });
 
 })
+
 
 module.exports = router ;

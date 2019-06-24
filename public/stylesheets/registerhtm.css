@@ -1,0 +1,31 @@
+html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        /* display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center; */
+        align-items: center;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+.imgstyle{
+  width:35%;
+  height:50%;
+}
+.formstyle{
+  margin-left:-10%;
+  width:110%;
+}
+.formstyle2{
+  margin-left:-10%;
+  width:110%;
+  color:#738598;
+}
+.h3style{
+  color:#393e46;
+  margin-left:50%;
+  margin-top:5%;
+}
